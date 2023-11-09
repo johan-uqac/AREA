@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Button from '@mui/material/Button'
 
-function App() {
+function ButtonUsage() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Button
+      variant='contained'
+      className='justify-self-center self-center'
+    >
+      AREA
+    </Button>
+  )
 }
 
-export default App;
+export default function App() {
+  return (
+    <div className='flex justify-center items-center w-screen h-screen bg-midnight'>
+      <ButtonUsage />
+    </div>
+  )
+}
