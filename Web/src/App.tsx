@@ -1,41 +1,39 @@
-import React, { useEffect, useState } from 'react'
-import Button from '@mui/material/Button'
+import { initializeApp } from 'firebase/app'
+import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import AuthentificationSection from './App/AuthentificationSection/AuthentificationSection'
+import ErrorPage from './ErrorPage'
+import Homepage from './App/HomePage/Homepage'
+import { AccountProvider } from './Common/httpFunctions/Contexts/AccountProvider'
+import firebaseConfig from './firebaseConfig'
 
-function ButtonUsage() {
-  return (
-    <Button
-      variant='contained'
-      className='justify-self-center self-center'
-    >
-      AREA
-    </Button>
-  )
-}
+// Initialize Firebase
+const app = initializeApp(firebaseConfig)
 
 export default function App() {
-  const [connection, setConnection] = useState('not fetched yet')
-
-  useEffect(() => {
-    fetch('http://localhost:3001/connectionStatus/', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(res => {
-        if (res.status === 200) {
-          setConnection('Success')
-        }
-      })
-      .catch(() => {
-        setConnection('Error')
-      })
-  }, [])
-
   return (
-    <div className='flex justify-center items-center w-screen h-screen bg-midnight'>
-      <ButtonUsage />
-      <span>{'Connexion: ' + connection}</span>
-    </div>
+    <AccountProvider>
+      <Router>
+        <Routes>
+          <Route
+            path='/'
+            index
+            element={<Navigate to='/auth' />}
+          />
+          <Route
+            path='/auth/*'
+            index
+            element={<AuthentificationSection />}
+          />
+          <Route
+            path='/home'
+            element={<Homepage />}
+          />
+          <Route
+            path='*'
+            element={<ErrorPage />}
+          />
+        </Routes>
+      </Router>
+    </AccountProvider>
   )
 }
