@@ -1,8 +1,0 @@
-name: Push Action
-
-on:
-  push:
-
-jobs:
-  linting:
-    uses: NoLoSay/NoLoApp/.github/workflows/front_end_linting.yml@main
