@@ -6,6 +6,9 @@ on:
 jobs:
   front-end-linting:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Web/
 
     steps:
       - name: Checkout
@@ -17,15 +20,12 @@ jobs:
         run: npm install -g yarn
 
       - name: Install dependencies
-        working-directory: ./Web
-        run: (echo | pwd) && yarn install
+        run: yarn install
 
       - name: Check Typescript
-        working-directory: ./Web
         run: yarn run type-check
 
       - name: Run Eslint
-        working-directory: ./Web
         run: yarn run lint
 
       - name: Prettify code
