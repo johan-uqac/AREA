@@ -5,6 +5,7 @@ export interface AccountType {
   email: string
   uid: string
   accessToken: string
+  firebaseUid: string
 }
 
 export interface AccountContextType {
@@ -16,6 +17,7 @@ export const defaultAccount: AccountType = {
   email: '',
   uid: '',
   accessToken: '',
+  firebaseUid: '',
 }
 
 export const AccountContext = createContext<AccountContextType>({

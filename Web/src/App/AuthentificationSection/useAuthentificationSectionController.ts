@@ -3,7 +3,7 @@ import { login, subscribe } from '../../Common/httpFunctions/authentification'
 import { UserCredential } from 'firebase/auth'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
-import { AccountContext } from '../../Common/httpFunctions/Contexts/AccountContext'
+import { AccountContext } from '../../Common/Contexts/AccountContext'
 
 type AuthForm = {
   email: string
@@ -39,13 +39,12 @@ export default function useAuthentificationSectionController() {
   function loginUser({ email, password }: LoginUser) {
     login(email, password)
       .then((userCredential: UserCredential) => {
-        console.log(userCredential)
         setAccount({
+          ...account,
           email: userCredential.user.email ?? 'unknown',
           uid: userCredential.user.uid,
           accessToken: userCredential.user.refreshToken,
         })
-        console.log(account)
         navigate('/home')
       })
       .catch(error => {
@@ -67,6 +66,7 @@ export default function useAuthentificationSectionController() {
     subscribe(data.email, data.password)
       .then((userCredential: UserCredential) => {
         setAccount({
+          ...account,
           email: userCredential.user.email ?? 'unknown',
           uid: userCredential.user.uid,
           accessToken: userCredential.user.refreshToken,

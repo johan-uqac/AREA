@@ -1,11 +1,19 @@
-import { useContext } from 'react'
-import { AccountContext } from '../../Common/httpFunctions/Contexts/AccountContext'
+import { Button } from '@mui/material'
+import useHomepageController from './useHomepageController'
 
 export default function Homepage() {
-  const { account } = useContext(AccountContext)
+  const { account, loading, status, getUserInfo } = useHomepageController()
+
   return (
     <div>
-      <h1>{'Homepage of ' + account.email}</h1>
+      {loading && <h1>Loading...</h1>}
+      {!loading && (
+        <div>
+          <h1>{'Homepage of ' + account.email}</h1>
+          <h2>{'Status of request: ' + status}</h2>
+          <Button onClick={getUserInfo}>Get User Info</Button>
+        </div>
+      )}
     </div>
   )
 }

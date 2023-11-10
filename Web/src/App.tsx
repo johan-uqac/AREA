@@ -3,7 +3,7 @@ import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-d
 import AuthentificationSection from './App/AuthentificationSection/AuthentificationSection'
 import ErrorPage from './ErrorPage'
 import Homepage from './App/HomePage/Homepage'
-import { AccountProvider } from './Common/httpFunctions/Contexts/AccountProvider'
+import { AccountProvider } from './Common/Contexts/AccountProvider'
 import firebaseConfig from './firebaseConfig'
 
 // Initialize Firebase
