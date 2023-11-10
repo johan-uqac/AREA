@@ -3,7 +3,7 @@ const app = express()
 const port = 3001
 const cors = require('cors')
 var admin = require("firebase-admin");
-var serviceAccount = require("./area-ad17a-firebase-adminsdk-i64rt-5f3d6b8137.json");
+var serviceAccount = require("./firebaseInfo.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
