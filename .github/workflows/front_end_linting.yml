@@ -18,7 +18,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: ./Web
-        run: yarn install
+        run: echo | pwd && yarn install
 
       - name: Check Typescript
         working-directory: ./Web
