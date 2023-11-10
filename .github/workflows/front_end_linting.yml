@@ -13,21 +13,17 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
-      - name: Go to Web directory
-        run: cd Web
-
       - name: Install yarn
         run: npm install -g yarn
 
       - name: Install dependencies
-        run: yarn install
+        run: cd Web && yarn install
 
       - name: Check Typescript
-        run: |
-          yarn run type-check
+        run: cd Web && yarn run type-check
 
       - name: Run Eslint
-        run: yarn run lint
+        run: cd Web && yarn run lint
 
       - name: Prettify code
         uses: creyD/prettier_action@v4.3
