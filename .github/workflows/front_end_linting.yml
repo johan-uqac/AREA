@@ -17,15 +17,18 @@ jobs:
         run: npm install -g yarn
 
       - name: Install dependencies
-        run: cd Web && yarn install
+        working-directory: ./Web
+        run: yarn install
 
       - name: Check Typescript
-        run: cd Web && yarn run type-check
+        working-directory: ./Web
+        run: yarn run type-check
 
       - name: Run Eslint
-        run: cd Web && yarn run lint
+        working-directory: ./Web
+        run: yarn run lint
 
       - name: Prettify code
         uses: creyD/prettier_action@v4.3
         with:
-          prettier_options: --write Web/**/*.{tsx,ts,jsx,js} --config ${{ github.workspace }}/.prettierrc.js
+          prettier_options: --write ./Web/**/*.{tsx,ts,jsx,js} --config ${{ github.workspace }}/.prettierrc.js
