@@ -7,7 +7,7 @@ type AuthentificationLayoutProps = {
 
 export default function AuthentificationLayout({ children, title }: AuthentificationLayoutProps) {
   return (
-    <div className='flex flex-col items-center justify-center bg-violet-200 h-screen'>
+    <div className='flex flex-col items-center justify-center antiquewhite h-screen'>
       <Card className='flex flex-col items-center justify-center bg-orange-200 p-10 w-1/4'>
         <h1 className='text-xl capitalize'>{title}</h1>
         {children}

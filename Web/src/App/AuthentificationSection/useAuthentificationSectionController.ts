@@ -2,8 +2,8 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { login, subscribe } from '../../Common/httpFunctions/authentification'
 import { UserCredential } from 'firebase/auth'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useContext } from 'react'
-import { AccountContext } from '../../Common/Contexts/AccountContext'
+import { useContext, useEffect } from 'react'
+import { AccountContext, AccountType } from '../../Common/Contexts/AccountContext'
 
 type AuthForm = {
   email: string

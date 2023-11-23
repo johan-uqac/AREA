@@ -1,11 +1,12 @@
 // AccountContext.tsx
-import React, { createContext, useState } from 'react'
+import React, { createContext } from 'react'
+import { AREA } from '../types/Area'
 
 export interface AccountType {
   email: string
   uid: string
   accessToken: string
-  firebaseUid: string
+  areas: AREA[]
 }
 
 export interface AccountContextType {
@@ -17,7 +18,7 @@ export const defaultAccount: AccountType = {
   email: '',
   uid: '',
   accessToken: '',
-  firebaseUid: '',
+  areas: [],
 }
 
 export const AccountContext = createContext<AccountContextType>({

@@ -1,19 +1,12 @@
-import { Button } from '@mui/material'
 import useHomepageController from './useHomepageController'
+import { ACTIONS, REACTIONS } from '../../Common/areas'
 
 export default function Homepage() {
-  const { account, loading, status, getUserInfo } = useHomepageController()
+  const { account } = useHomepageController()
 
   return (
-    <div>
-      {loading && <h1>Loading...</h1>}
-      {!loading && (
-        <div>
-          <h1>{'Homepage of ' + account.email}</h1>
-          <h2>{'Status of request: ' + status}</h2>
-          <Button onClick={getUserInfo}>Get User Info</Button>
-        </div>
-      )}
+    <div className='w-screen pt-6'>
+      <h1 className='text-xl font-bold font-sans text-center'>{'Bon retour, ' + account.email}</h1>
     </div>
   )
 }
