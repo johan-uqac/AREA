@@ -61,14 +61,12 @@ export default function useAuthentificationSectionController() {
           uid: userCredential.user.uid,
           accessToken: userCredential.user.refreshToken,
         })
-        console.log('Add to cache')
         addDataIntoCache('area', {
           mail: userCredential.user.email,
           uid: userCredential.user.uid,
           password: btoa(password),
           accessToken: userCredential.user.refreshToken,
         })
-        console.log('End Add to cache')
         navigate('/home')
       })
       .catch(error => {

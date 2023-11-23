@@ -16,7 +16,6 @@ export function getDataFromCache(cacheName) {
 
 export function addDataIntoCache(cacheName, response) {
     try {
-        console.log("addDataIntoCache: " + JSON.stringify(response));
         localStorage.setItem(cacheName, JSON.stringify(response))
     } catch (error) {
         console.log("error adding cache: " + error);
