@@ -4,6 +4,7 @@ const port = 3001
 const cors = require('cors')
 const admin = require("firebase-admin");
 const serverInfo = require("./serverInfo.json");
+const nodeCron = require("node-cron")
 
 admin.initializeApp({
   credential: admin.credential.cert(serverInfo.firebaseInfo),
@@ -83,4 +84,13 @@ app.listen(port, () => {
       console.log(r)
     })
   })
+})
+
+
+nodeCron.schedule("*/10 * * * * *", () => {
+  // Get all users from DB
+  // For each user, get all areas
+  // For each area, check if action condition is met
+  // If so, do reaction
+  console.log("Cron job run")
 })
