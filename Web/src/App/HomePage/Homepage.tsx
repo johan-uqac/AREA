@@ -1,21 +1,52 @@
+import React from 'react'
+import { Button, Fab, Grid, Typography } from '@mui/material'
+import AddIcon from '@mui/icons-material/Add'
 import useHomepageController from './useHomepageController'
 import { ACTIONS, REACTIONS } from '../../Common/areas'
 import Area from '../Components/Area'
 import ActionReactionModal from '../Components/CreateArea'
 
-export default function Homepage() {
+const Homepage = () => {
   const { account, areas, showModal, toggleModal } = useHomepageController()
 
   return (
-    <div className='w-screen pt-6'>
-      <button onClick={toggleModal}>ADD AREA</button>
-      <h1 className='text-xl font-bold font-sans text-center'>{'Bon retour, ' + account.email}</h1>
-      <h3>Voici les AREAs que vous avez définies</h3>
-      {areas.map((area, index) => (
-        <div key={index}>
-          <Area area={area} />
-        </div>
-      ))}
+    <div className='w-screen pt-6 flex flex-col items-center justify-center'>
+      <div className='flex justify-center items-center mb-4'>
+        <Typography
+          variant='h4'
+          className='font-bold'
+        >
+          Bon retour, {account.email}
+        </Typography>
+      </div>
+
+      <Grid
+        container
+        spacing={4}
+      >
+        {areas.map((area, index) => (
+          <Grid
+            item
+            key={index}
+            xs={12}
+            sm={6}
+            md={4}
+            lg={3}
+          >
+            <Area area={area} />
+          </Grid>
+        ))}
+      </Grid>
+
+      <div className='flex justify-center mt-4'>
+        <Fab
+          color='primary'
+          onClick={toggleModal}
+        >
+          <AddIcon />
+        </Fab>
+      </div>
+
       {showModal && (
         <ActionReactionModal
           actions={ACTIONS}
@@ -27,3 +58,5 @@ export default function Homepage() {
     </div>
   )
 }
+
+export default Homepage
