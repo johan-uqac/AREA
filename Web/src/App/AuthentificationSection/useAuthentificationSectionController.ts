@@ -1,9 +1,10 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { login, subscribe } from '../../Common/httpFunctions/authentification'
+import { checkIfUserExists, login, subscribe } from '../../Common/httpFunctions/authentification'
 import { UserCredential } from 'firebase/auth'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useContext, useEffect } from 'react'
 import { AccountContext, AccountType } from '../../Common/Contexts/AccountContext'
+import { addDataIntoCache, getDataFromCache } from '../../helpers/CacheManagement'
 
 type AuthForm = {
   email: string
@@ -32,6 +33,21 @@ export default function useAuthentificationSectionController() {
   const navigate = useNavigate()
   const { account, setAccount } = useContext(AccountContext)
 
+  useEffect(() => {
+    var cacheData = getDataFromCache('area')
+    if (cacheData && cacheData.mail && cacheData.uid && cacheData.password) {
+      if (checkIfUserExists(cacheData.uid)) {
+        setAccount({
+          ...account,
+          email: cacheData.mail,
+          uid: cacheData.uid,
+          accessToken: cacheData.accessToken,
+        })
+        navigate('/home')
+      }
+    }
+  }, [])
+
   function getSection() {
     return location.pathname.split('/').pop() ?? 'error'
   }
@@ -45,6 +61,12 @@ export default function useAuthentificationSectionController() {
           uid: userCredential.user.uid,
           accessToken: userCredential.user.refreshToken,
         })
+        addDataIntoCache('area', {
+          mail: userCredential.user.email,
+          uid: userCredential.user.uid,
+          password: btoa(password),
+          accessToken: userCredential.user.refreshToken,
+        })
         navigate('/home')
       })
       .catch(error => {
@@ -54,6 +76,10 @@ export default function useAuthentificationSectionController() {
             break
           case 'auth/wrong-password':
             setError('password', { message: 'Wrong password' })
+            break
+          default:
+            console.log(error.code)
+            setError('email', { message: 'Unknown error' })
             break
         }
       })
@@ -71,6 +97,12 @@ export default function useAuthentificationSectionController() {
           uid: userCredential.user.uid,
           accessToken: userCredential.user.refreshToken,
         })
+        // addDataIntoCache('area', {
+        //   mail: userCredential.user.email,
+        //   uid: userCredential.user.uid,
+        //   password: btoa(data.password),
+        //   accessToken: userCredential.user.refreshToken,
+        // })
         navigate('/home')
       })
       .catch(error => {
