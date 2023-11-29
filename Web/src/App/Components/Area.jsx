@@ -3,15 +3,15 @@ import { Paper, Typography, Button } from '@mui/material'
 
 const Area = ({ area }) => {
   const logo = {
-    spotify: require('./assets/spotify.png'),
     gmail: require('./assets/google.png'),
     meteo: require('./assets/meteo.png'),
+    iss: require('./assets/nasa.png'),
   }
 
   return (
     <Paper
       elevation={3}
-      className='w-72 h-80 m-4 p-2 flex flex-col items-center cursor-pointer'
+      className='w-72 h-80 m-4 p-2 flex flex-col items-center cursor-pointer bg-slate-400'
     >
       <div className='flex justify-between w-full'>
         <img

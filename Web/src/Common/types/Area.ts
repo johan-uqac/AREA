@@ -3,7 +3,7 @@ export interface AREA {
   reaction: SERVICE
 }
 
-type PLATFORM = 'gmail' | 'spotify' | 'meteo'
+type PLATFORM = 'gmail' | 'spotify' | 'meteo' | 'iss'
 
 export interface SERVICE {
   id: string

@@ -4,169 +4,29 @@ const USER_AREAS: AREA[] = [
   {
     action: {
       id: '1',
-      name: 'Receive email',
-      description: 'When I receive an email',
-      platform: 'gmail',
+      name: 'Quand il neige à Saguenay',
+      description: 'Quand il neige à Saguenay',
+      platform: 'meteo',
     },
     reaction: {
       id: '2',
-      name: 'Add Jingle bells to AREA playlist',
-      description: 'Add Jingle bells to AREA playlist',
-      platform: 'spotify',
+      name: 'Envoie un mail',
+      description: 'Envoie un mail',
+      platform: 'gmail',
     },
   },
   {
     action: {
       id: '1',
-      name: 'Receive email',
-      description: 'When I receive an email',
-      platform: 'gmail',
+      name: "Quand l'ISS passe à moins de 100km de Saguenay",
+      description: "Quand l'ISS passe à moins de 100km de Saguenay",
+      platform: 'iss',
     },
     reaction: {
       id: '2',
-      name: 'Add Jingle bells to AREA playlist',
-      description: 'Add Jingle bells to AREA playlist',
-      platform: 'spotify',
-    },
-  },
-  {
-    action: {
-      id: '1',
-      name: 'Receive email',
-      description: 'When I receive an email',
+      name: 'Envoie un mail',
+      description: 'Envoie un mail',
       platform: 'gmail',
-    },
-    reaction: {
-      id: '2',
-      name: 'Add Jingle bells to AREA playlist',
-      description: 'Add Jingle bells to AREA playlist',
-      platform: 'spotify',
-    },
-  },
-  {
-    action: {
-      id: '1',
-      name: 'Receive email',
-      description: 'When I receive an email',
-      platform: 'gmail',
-    },
-    reaction: {
-      id: '2',
-      name: 'Add Jingle bells to AREA playlist',
-      description: 'Add Jingle bells to AREA playlist',
-      platform: 'spotify',
-    },
-  },
-  {
-    action: {
-      id: '1',
-      name: 'Receive email',
-      description: 'When I receive an email',
-      platform: 'gmail',
-    },
-    reaction: {
-      id: '2',
-      name: 'Add Jingle bells to AREA playlist',
-      description: 'Add Jingle bells to AREA playlist',
-      platform: 'spotify',
-    },
-  },
-  {
-    action: {
-      id: '1',
-      name: 'Receive email',
-      description: 'When I receive an email',
-      platform: 'gmail',
-    },
-    reaction: {
-      id: '2',
-      name: 'Add Jingle bells to AREA playlist',
-      description: 'Add Jingle bells to AREA playlist',
-      platform: 'spotify',
-    },
-  },
-  {
-    action: {
-      id: '1',
-      name: 'Receive email',
-      description: 'When I receive an email',
-      platform: 'gmail',
-    },
-    reaction: {
-      id: '2',
-      name: 'Add Jingle bells to AREA playlist',
-      description: 'Add Jingle bells to AREA playlist',
-      platform: 'spotify',
-    },
-  },
-  {
-    action: {
-      id: '1',
-      name: 'Receive email',
-      description: 'When I receive an email',
-      platform: 'gmail',
-    },
-    reaction: {
-      id: '2',
-      name: 'Add Jingle bells to AREA playlist',
-      description: 'Add Jingle bells to AREA playlist',
-      platform: 'spotify',
-    },
-  },
-  {
-    action: {
-      id: '1',
-      name: 'Receive email',
-      description: 'When I receive an email',
-      platform: 'gmail',
-    },
-    reaction: {
-      id: '2',
-      name: 'Add Jingle bells to AREA playlist',
-      description: 'Add Jingle bells to AREA playlist',
-      platform: 'spotify',
-    },
-  },
-  {
-    action: {
-      id: '1',
-      name: 'Receive email',
-      description: 'When I receive an email',
-      platform: 'gmail',
-    },
-    reaction: {
-      id: '2',
-      name: 'Add Jingle bells to AREA playlist',
-      description: 'Add Jingle bells to AREA playlist',
-      platform: 'spotify',
-    },
-  },
-  {
-    action: {
-      id: '1',
-      name: 'Receive email',
-      description: 'When I receive an email',
-      platform: 'gmail',
-    },
-    reaction: {
-      id: '2',
-      name: 'Add Jingle bells to AREA playlist',
-      description: 'Add Jingle bells to AREA playlist',
-      platform: 'spotify',
-    },
-  },
-  {
-    action: {
-      id: '1',
-      name: 'Receive email',
-      description: 'When I receive an email',
-      platform: 'gmail',
-    },
-    reaction: {
-      id: '2',
-      name: 'Add Jingle bells to AREA playlist',
-      description: 'Add Jingle bells to AREA playlist',
-      platform: 'spotify',
     },
   },
 ]
