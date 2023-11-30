@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Fab, Grid, Typography } from '@mui/material'
+import { Fab, Grid, Typography } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 import useHomepageController from './useHomepageController'
 import { ACTIONS, REACTIONS } from '../../Common/areas'
@@ -11,15 +11,20 @@ const Homepage = () => {
 
   return (
     <div className='w-screen pt-6 flex flex-col items-center justify-center'>
-      <div className='flex justify-center items-center mb-4'>
+      <div className='flex items-center mb-4 gap-8 px-8'>
         <Typography
           variant='h4'
           className='font-bold'
         >
           Bon retour, {account.email}
         </Typography>
+        <Fab
+          color='primary'
+          onClick={toggleModal}
+        >
+          <AddIcon />
+        </Fab>
       </div>
-
       <Grid
         container
         spacing={4}
@@ -32,6 +37,8 @@ const Homepage = () => {
             sm={6}
             md={4}
             lg={3}
+            container
+            justifyContent={'center'}
           >
             <Area
               area={area}
@@ -40,16 +47,6 @@ const Homepage = () => {
           </Grid>
         ))}
       </Grid>
-
-      <div className='flex justify-center mt-4'>
-        <Fab
-          color='primary'
-          onClick={toggleModal}
-        >
-          <AddIcon />
-        </Fab>
-      </div>
-
       {showModal && (
         <ActionReactionModal
           actions={ACTIONS}
