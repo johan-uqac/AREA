@@ -1,10 +1,11 @@
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { SubmitHandler, set, useForm } from 'react-hook-form'
 import { checkIfUserExists, login, subscribe } from '../../Common/httpFunctions/authentification'
 import { UserCredential } from 'firebase/auth'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useContext, useEffect } from 'react'
 import { AccountContext, AccountType } from '../../Common/Contexts/AccountContext'
 import { addDataIntoCache, getDataFromCache } from '../../helpers/CacheManagement'
+import { json } from 'stream/consumers'
 
 type AuthForm = {
   email: string
@@ -53,36 +54,47 @@ export default function useAuthentificationSectionController() {
   }
 
   function loginUser({ email, password }: LoginUser) {
-    login(email, password)
-      .then((userCredential: UserCredential) => {
+    fetch('http://localhost:8080/user/sign-in', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password        
+      })
+    }).then((res) => {
+      if (res.status == 406) {
+        res.clone().json().then((json) => {
+          console.log(json)
+          if (json.message == 'Wrong password') {
+            console.log(json.message)
+            setError('password', { message: 'Le mot de passe est invalide' })
+            return false
+          } else if (json.message == 'Please enter a valid email') {
+            setError('email', { message: 'Email invalide' })
+            return false
+          } else if (json.message == 'user not exist') {
+            setError('email', {message: 'cet utilisateur existe pas'})
+          }
+        })
+      }
+      return res.json();
+    }).then((json) => {
+      console.log(json)
         setAccount({
           ...account,
-          email: userCredential.user.email ?? 'unknown',
-          uid: userCredential.user.uid,
-          accessToken: userCredential.user.refreshToken,
+          email: email,
+          uid: json._id,
         })
         addDataIntoCache('area', {
-          mail: userCredential.user.email,
-          uid: userCredential.user.uid,
-          password: btoa(password),
-          accessToken: userCredential.user.refreshToken,
+          mail: json.email,
+          uid: json._id,
+          password: json.password
         })
         navigate('/home')
-      })
-      .catch(error => {
-        switch (error.code) {
-          case 'auth/user-not-found':
-            setError('email', { message: "Aucun compte n'est relié à cet email" })
-            break
-          case 'auth/wrong-password':
-            setError('password', { message: 'Mot de passe incorrect' })
-            break
-          default:
-            console.log(error.code)
-            setError('email', { message: 'Erreur inconnue' })
-            break
-        }
-      })
+    })
   }
 
   function subscribeUser(data: SubscribeUser) {
@@ -90,36 +102,42 @@ export default function useAuthentificationSectionController() {
       setError('passwordConfirmation', { message: 'Les mots de passe sont différents' })
       return
     }
-
-    subscribe(data.email, data.password)
-      .then((userCredential: UserCredential) => {
+    fetch('http://localhost:8080/user/sign-up', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: data.email,
+        password: data.password        
+      })
+    }).then((res) => {
+      if (res.status == 406) {
+        console.log(res)
+        res.json().then((json) => {
+          if (json.message == 'user already exist') {
+            setError('email', { message: 'Email déjà utilisé' })
+          } else if (json.message == 'invalid email') {
+            setError('email', { message: 'Email invalide' })
+          }
+        })
+      }
+      return res.json()
+    }).then((json) => {
+      console.log(json)
         setAccount({
           ...account,
-          email: userCredential.user.email ?? 'unknown',
-          uid: userCredential.user.uid,
-          accessToken: userCredential.user.refreshToken,
+          email: data.email,
+          uid: json._id,
         })
         addDataIntoCache('area', {
-          mail: userCredential.user.email,
-          uid: userCredential.user.uid,
-          password: btoa(data.password),
-          accessToken: userCredential.user.refreshToken,
+          mail: json.email,
+          uid: json._id,
+          password: json.password
         })
         navigate('/home')
-      })
-      .catch(error => {
-        switch (error.code) {
-          case 'auth/email-already-in-use':
-            setError('email', { message: 'Email déjà utilisé' })
-            break
-          case 'auth/weak-password':
-            setError('password', { message: 'Mot de passe faible' })
-            break
-          case 'auth/invalid-email':
-            setError('email', { message: 'Email invalide' })
-            break
-        }
-      })
+    })
   }
 
   const onSubmit: SubmitHandler<AuthForm> = data => {
