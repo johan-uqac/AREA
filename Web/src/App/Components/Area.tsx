@@ -1,8 +1,18 @@
 import React from 'react'
 import { Paper, Typography, Button } from '@mui/material'
+import { AREA } from '../../Common/types/Area'
 
-const Area = ({ area }) => {
-  const logo = {
+type Props = {
+  area: AREA
+  deleteArea: (id: string) => void
+}
+
+type Logo = {
+  [key: string]: string
+}
+
+const Area = ({ area, deleteArea }: Props) => {
+  const logo: Logo = {
     gmail: require('./assets/google.png'),
     meteo: require('./assets/meteo.png'),
     iss: require('./assets/nasa.png'),
@@ -38,6 +48,14 @@ const Area = ({ area }) => {
           </Button>
         </div>
       </div>
+      <Button
+        variant='contained'
+        color='error'
+        className='mt-2'
+        onClick={() => deleteArea(area.id)}
+      >
+        Delete
+      </Button>
     </li>
   )
 }

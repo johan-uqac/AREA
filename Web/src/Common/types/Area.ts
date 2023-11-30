@@ -1,4 +1,5 @@
 export interface AREA {
+  id: string
   action: SERVICE
   reaction: SERVICE
 }
