@@ -5,7 +5,6 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useContext, useEffect } from 'react'
 import { AccountContext, AccountType } from '../../Common/Contexts/AccountContext'
 import { addDataIntoCache, getDataFromCache } from '../../helpers/CacheManagement'
-import axios from 'axios'
 
 type AuthForm = {
   email: string
@@ -108,22 +107,6 @@ export default function useAuthentificationSectionController() {
       return
     }
     console.log(data)
-    // subscribe(data.email, data.password)
-    //   .then((userCredential: UserCredential) => {
-    //     setAccount({
-    //       ...account,
-    //       email: userCredential.user.email ?? 'unknown',
-    //       uid: userCredential.user.uid,
-    //       accessToken: userCredential.user.refreshToken,
-    //     })
-    //     addDataIntoCache('area', {
-    //       mail: userCredential.user.email,
-    //       uid: userCredential.user.uid,
-    //       password: btoa(data.password),
-    //       accessToken: userCredential.user.refreshToken,
-    //     })
-    //     navigate('/home')
-    //   })
     fetch('http://localhost:8080/users', {
       method: 'POST',
       mode: 'cors',
@@ -136,19 +119,24 @@ export default function useAuthentificationSectionController() {
       })
     }).then((res: any) => {
       console.log(res)
-      setAccount({
-        ...account,
-        email: data.email,
-        uid: res.userId,
-      })
-      addDataIntoCache('area', {
-        mail: data.email,
-        uid: res.userId,
-        password: data.password
-      })
-      navigate('/home')
+      if (res.ok) {
+        console.log(res.userId)
+        setAccount({
+          ...account,
+          email: data.email,
+          uid: res.userId,
+        })
+        addDataIntoCache('area', {
+          mail: data.email,
+          uid: res.userId,
+          password: data.password
+        })
+        navigate('/home')
+      } else {
+        setError('email', { message: 'Email déjà utilisé' })
+      }
     })
-      .catch(error => {
+    .catch(error => {
         switch (error.code) {
           case 'auth/email-already-in-use':
             setError('email', { message: 'Email déjà utilisé' })
