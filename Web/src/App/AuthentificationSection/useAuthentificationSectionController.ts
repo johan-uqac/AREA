@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useContext, useEffect } from 'react'
 import { AccountContext, AccountType } from '../../Common/Contexts/AccountContext'
 import { addDataIntoCache, getDataFromCache } from '../../helpers/CacheManagement'
+import axios from 'axios'
 
 type AuthForm = {
   email: string
@@ -53,6 +54,22 @@ export default function useAuthentificationSectionController() {
   }
 
   function loginUser({ email, password }: LoginUser) {
+    // axios.post('http://localhost:8080/users', {
+    //   email: email,
+    //   password: password
+    // }).then((res: any) => {
+    //   setAccount({
+    //     ...account,
+    //     email: email,
+    //     uid: res.userId,
+    //   })
+    //   addDataIntoCache('area', {
+    //     mail: email,
+    //     uid: res.userId,
+    //     password: password
+    //   })
+    //   navigate('/home')
+    // })
     login(email, password)
       .then((userCredential: UserCredential) => {
         setAccount({
@@ -90,23 +107,47 @@ export default function useAuthentificationSectionController() {
       setError('passwordConfirmation', { message: 'Les mots de passe sont différents' })
       return
     }
-
-    subscribe(data.email, data.password)
-      .then((userCredential: UserCredential) => {
-        setAccount({
-          ...account,
-          email: userCredential.user.email ?? 'unknown',
-          uid: userCredential.user.uid,
-          accessToken: userCredential.user.refreshToken,
-        })
-        addDataIntoCache('area', {
-          mail: userCredential.user.email,
-          uid: userCredential.user.uid,
-          password: btoa(data.password),
-          accessToken: userCredential.user.refreshToken,
-        })
-        navigate('/home')
+    console.log(data)
+    // subscribe(data.email, data.password)
+    //   .then((userCredential: UserCredential) => {
+    //     setAccount({
+    //       ...account,
+    //       email: userCredential.user.email ?? 'unknown',
+    //       uid: userCredential.user.uid,
+    //       accessToken: userCredential.user.refreshToken,
+    //     })
+    //     addDataIntoCache('area', {
+    //       mail: userCredential.user.email,
+    //       uid: userCredential.user.uid,
+    //       password: btoa(data.password),
+    //       accessToken: userCredential.user.refreshToken,
+    //     })
+    //     navigate('/home')
+    //   })
+    fetch('http://localhost:8080/users', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: data.email,
+        password: data.password        
       })
+    }).then((res: any) => {
+      console.log(res)
+      setAccount({
+        ...account,
+        email: data.email,
+        uid: res.userId,
+      })
+      addDataIntoCache('area', {
+        mail: data.email,
+        uid: res.userId,
+        password: data.password
+      })
+      navigate('/home')
+    })
       .catch(error => {
         switch (error.code) {
           case 'auth/email-already-in-use':
