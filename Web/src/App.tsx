@@ -5,6 +5,7 @@ import ErrorPage from './ErrorPage'
 import Homepage from './App/HomePage/Homepage'
 import { AccountProvider } from './Common/Contexts/AccountProvider'
 import firebaseConfig from './firebaseConfig'
+import LandingPage from './App/LandingPage/LandingPage'
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig)
@@ -17,7 +18,7 @@ export default function App() {
           <Route
             path='/'
             index
-            element={<Navigate to='/auth' />}
+            element={<LandingPage />}
           />
           <Route
             path='/auth/*'
