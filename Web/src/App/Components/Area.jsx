@@ -9,55 +9,36 @@ const Area = ({ area }) => {
   }
 
   return (
-    <Paper
-      elevation={3}
-      className='w-72 h-80 m-4 p-2 flex flex-col items-center cursor-pointer bg-slate-400'
+    <li
+      className='py-3 sm:py-4'
+      key={area.action.name + area.reaction.name}
     >
-      <div className='flex justify-between w-full'>
-        <img
-          src={logo[area.action.platform]}
-          alt="Logo de l'action"
-          className='w-14 h-14 p-2'
-        />
-        <Typography
-          variant='h5'
-          className='m-2 text-xl'
-        >
-          AREA
-        </Typography>
-        <img
-          src={logo[area.reaction.platform]}
-          alt='Logo de la réaction'
-          className='w-14 h-14 p-2'
-        />
-      </div>
-      <div className='flex flex-col justify-around items-center h-2/3'>
-        <div className='p-2 h-1/2'>
-          <Typography
-            variant='body1'
-            align='center'
-          >
-            {area.action.description}
-          </Typography>
+      <div className='flex items-center space-x-4 rtl:space-x-reverse'>
+        <div className='flex-shrink-0'>
+          <img
+            className='w-8 h-8 rounded-full aspect-square'
+            src={logo[area.action.platform]}
+            alt='area'
+          />
         </div>
-        <div className='p-2 h-1/2'>
-          <Typography
-            variant='body1'
-            align='center'
+        <div className='flex-1 min-w-0 flex-col'>
+          <p className='text-sm font-medium text-black truncate'>{area.action.description}</p>
+          <p className='text-sm text-black truncate'>{area.reaction.description}</p>
+        </div>
+        <div className='inline-flex items-center text-base font-semibold text-gray-900 dark:text-white'>
+          <Button
+            variant='contained'
+            color='primary'
+            onClick={() => {
+              console.log('delete')
+            }}
+            className='inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-teal-600 border border-transparent rounded-md shadow-sm hover:bg-slate-900 hover:outline-none hover:ring-2 hover:ring-offset-2 hover:ring-slate-900'
           >
-            {area.reaction.description}
-          </Typography>
+            Delete
+          </Button>
         </div>
       </div>
-      {/* You can add a delete button or any other action button here */}
-      <Button
-        variant='contained'
-        color='error'
-        className='mt-2'
-      >
-        Delete
-      </Button>
-    </Paper>
+    </li>
   )
 }
 
