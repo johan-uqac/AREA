@@ -25,7 +25,7 @@ export default function AuthentificationLayout({ children, title }: Authentifica
             alt='Illustration'
           />
         </div>
-        <div className='md:w-1/3 max-w-sm'>
+        <div className='md:w-1/3 max-w-sm mx-16 px-8 py-4 bg-gray-300 bg-opacity-70 rounded'>
           <div className='text-center md:text-center'>
             <span className='mr-1 font-bold text-2xl'>{title === 'login' ? 'Se connecter' : "S'inscrire"}</span>
           </div>
@@ -46,14 +46,4 @@ export default function AuthentificationLayout({ children, title }: Authentifica
       </section>
     </div>
   )
-}
-
-{
-  /* <Card className='flex flex-col items-center justify-center bg-orange-200 p-10 w-1/4'>
-  <h1 className='text-xl capitalize'>{title}</h1>
-  {children}
-  <Link href={title === 'login' ? './subscribe' : './login'}>
-    {title === 'login' ? 'Create an account' : 'Connect to your account'}
-  </Link>
-</Card> */
 }
