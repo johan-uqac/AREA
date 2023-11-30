@@ -1,7 +1,7 @@
 import React from 'react'
 import { Paper, Typography, Button } from '@mui/material'
 
-const Area = ({ area }) => {
+const Area = ({ area, deleteArea }) => {
   const logo = {
     gmail: require('./assets/google.png'),
     meteo: require('./assets/meteo.png'),
@@ -49,11 +49,11 @@ const Area = ({ area }) => {
           </Typography>
         </div>
       </div>
-      {/* You can add a delete button or any other action button here */}
       <Button
         variant='contained'
         color='error'
         className='mt-2'
+        onClick={() => deleteArea(area.id)}
       >
         Delete
       </Button>

@@ -7,7 +7,7 @@ import Area from '../Components/Area'
 import ActionReactionModal from '../Components/CreateArea'
 
 const Homepage = () => {
-  const { account, areas, showModal, toggleModal } = useHomepageController()
+  const { account, areas, showModal, toggleModal, deleteArea, addArea } = useHomepageController()
 
   return (
     <div className='w-screen pt-6 flex flex-col items-center justify-center'>
@@ -33,7 +33,10 @@ const Homepage = () => {
             md={4}
             lg={3}
           >
-            <Area area={area} />
+            <Area
+              area={area}
+              deleteArea={deleteArea}
+            />
           </Grid>
         ))}
       </Grid>
@@ -52,7 +55,7 @@ const Homepage = () => {
           actions={ACTIONS}
           reactions={REACTIONS}
           onClose={toggleModal}
-          onConfirm={() => console.log('confirm')}
+          onConfirm={addArea}
         />
       )}
     </div>

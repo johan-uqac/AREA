@@ -2,6 +2,7 @@ import { AREA } from '../types/Area'
 
 const USER_AREAS: AREA[] = [
   {
+    id: '0',
     action: {
       id: '1',
       name: 'Quand il neige à Saguenay',
@@ -16,6 +17,7 @@ const USER_AREAS: AREA[] = [
     },
   },
   {
+    id: '1',
     action: {
       id: '1',
       name: "Quand l'ISS passe à moins de 100km de Saguenay",
