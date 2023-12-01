@@ -1,4 +1,4 @@
-import { Card, Link } from '@mui/material'
+import React from 'react'
 
 type AuthentificationLayoutProps = {
   children: React.ReactNode
@@ -7,8 +7,8 @@ type AuthentificationLayoutProps = {
 
 export default function AuthentificationLayout({ children, title }: AuthentificationLayoutProps) {
   const assets = {
-    pic: require('../Components/assets/pic.png'),
-    backgroundImage: require('../Components/assets/background.jpg'),
+    pic: require('../../assets/pic.png'),
+    backgroundImage: require('../../assets/background.jpg'),
   }
   var sectionStyle = {
     backgroundImage: `url(${assets.backgroundImage})`,

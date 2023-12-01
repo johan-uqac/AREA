@@ -1,52 +1,36 @@
 import React from 'react'
-import { Fab, Grid, Typography } from '@mui/material'
-import AddIcon from '@mui/icons-material/Add'
 import useHomepageController from './useHomepageController'
 import { ACTIONS, REACTIONS } from '../../Common/areas'
-import Area from '../Components/Area'
 import ActionReactionModal from '../Components/CreateArea'
+import AreasView from './Views/AreaView'
+import AccountView from './Views/AccountView'
+import HeaderView from './Views/HeaderView'
 
 const Homepage = () => {
-  const { account, areas, showModal, toggleModal, deleteArea, addArea } = useHomepageController()
+  const { account, areas, showModal, toggleModal, deleteArea, addArea, logOut } = useHomepageController()
 
   return (
-    <div className='w-screen pt-6 flex flex-col items-center justify-center'>
-      <div className='flex items-center mb-4 gap-8 px-8'>
-        <Typography
-          variant='h4'
-          className='font-bold'
-        >
-          Bon retour, {account.email}
-        </Typography>
-        <Fab
-          color='primary'
-          onClick={toggleModal}
-        >
-          <AddIcon />
-        </Fab>
-      </div>
-      <Grid
-        container
-        spacing={4}
-      >
-        {areas.map((area, index) => (
-          <Grid
-            item
-            key={index}
-            xs={12}
-            sm={6}
-            md={4}
-            lg={3}
-            container
-            justifyContent={'center'}
-          >
-            <Area
-              area={area}
+    <div>
+      <HeaderView logOut={logOut} />
+
+      <h1 className='flex justify-center text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-4xl lg:text-5xl xl:text-6xl bg-white'>
+        <span className='block :inline '>C&apos;est parti !</span>
+      </h1>
+
+      <section className='px-2 py-32 bg-white md:px-0'>
+        <div className='container items-center max-w-6xl px-8 mx-auto xl:px-5'>
+          <div className='flex flex-wrap items-center sm:-mx-3'>
+            <AccountView
+              account={account}
+              toggleModal={toggleModal}
+            />
+            <AreasView
+              areas={areas}
               deleteArea={deleteArea}
             />
-          </Grid>
-        ))}
-      </Grid>
+          </div>
+        </div>
+      </section>
       {showModal && (
         <ActionReactionModal
           actions={ACTIONS}

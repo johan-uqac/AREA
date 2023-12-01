@@ -5,6 +5,7 @@ import USER_AREAS from '../../Common/hardData/users_areas'
 import { v4 as uuidv4 } from 'uuid'
 import { AREA } from '../../Common/types/Area'
 import { ACTIONS, REACTIONS } from '../../Common/areas'
+import { removeDataFromCache } from '../../helpers/CacheManagement'
 
 export default function useHomepageController() {
   const { account, setAccount } = useContext(AccountContext)
@@ -36,6 +37,17 @@ export default function useHomepageController() {
     setAreas([...areas, newArea])
   }
 
+  const logOut = () => {
+    setAccount({
+      email: '',
+      uid: '',
+      accessToken: '',
+      areas: [],
+    })
+    removeDataFromCache('area')
+    navigate('/auth/login')
+  }
+
   return {
     account,
     areas,
@@ -43,5 +55,6 @@ export default function useHomepageController() {
     toggleModal,
     deleteArea,
     addArea,
+    logOut,
   }
 }

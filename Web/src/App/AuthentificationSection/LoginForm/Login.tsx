@@ -1,14 +1,4 @@
-import { Button } from '@mui/material'
-import TextField from '@mui/material/TextField'
-
-const assets = {
-  pic: require('../../Components/assets/pic.png'),
-  backgroundImage: require('../../Components/assets/background.jpg'),
-}
-
-var sectionStyle = {
-  backgroundImage: `url(${assets.backgroundImage})`,
-}
+import React from 'react'
 
 export default function LoginForm({ register, handleSubmit, errors, onSubmit }: any) {
   return (

@@ -1,11 +1,4 @@
-const assets = {
-  pic: require('../../Components/assets/pic.png'),
-  backgroundImage: require('../../Components/assets/background.jpg'),
-}
-
-var sectionStyle = {
-  backgroundImage: `url(${assets.backgroundImage})`,
-}
+import React from 'react'
 
 export default function SubscribeForm({ register, handleSubmit, errors, onSubmit }: any) {
   return (
