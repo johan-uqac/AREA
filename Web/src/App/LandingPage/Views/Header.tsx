@@ -7,6 +7,7 @@ const ConnectButtons = () => (
       onClick={() => {
         window.location.href = './auth/login'
       }}
+      type='secondary'
     >
       <span>Connectes-toi</span>
     </Button>
@@ -14,7 +15,7 @@ const ConnectButtons = () => (
       onClick={() => {
         window.location.href = './auth/subscribe'
       }}
-      color='teal-600'
+      type='primary'
     >
       <span>Inscris-toi</span>
     </Button>

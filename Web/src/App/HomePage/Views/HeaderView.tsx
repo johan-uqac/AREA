@@ -19,7 +19,10 @@ const HeaderView = ({ logOut }: HeaderViewProps) => (
         </a>
       </div>
       <div className='inline-flex items-center ml-5 space-x-6 lg:justify-end'>
-        <Button onClick={logOut}>
+        <Button
+          onClick={logOut}
+          type='secondary'
+        >
           <span>Se déconnecter</span>
         </Button>
       </div>

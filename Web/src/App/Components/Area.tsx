@@ -38,7 +38,7 @@ const Area = ({ area, deleteArea }: Props) => {
         <div className='inline-flex items-center text-base font-semibold text-gray-900 dark:text-white'>
           <Button
             onClick={() => deleteArea(area.id)}
-            color='teal-600'
+            type='primary'
           >
             Supprimer
           </Button>

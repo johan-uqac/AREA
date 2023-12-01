@@ -21,7 +21,7 @@ export default function Discover() {
                   onClick={() => {
                     window.location.href = 'https://fr.wikipedia.org/wiki/Zapier'
                   }}
-                  color='teal-600'
+                  type='primary'
                 >
                   <span>En savoir plus</span>
                 </Button>
