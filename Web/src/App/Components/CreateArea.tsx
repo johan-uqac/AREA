@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Button, Dialog, DialogTitle, DialogContent, DialogActions, MenuItem, Select, Typography } from '@mui/material'
+import { Dialog, DialogTitle, DialogContent, DialogActions, MenuItem, Select, Typography } from '@mui/material'
+import Button from './Button'
 import { SERVICE } from '../../Common/types/Area'
 
 type ActionReactionModalProps = {
@@ -67,12 +68,17 @@ const ActionReactionModal = ({ actions, reactions, onClose, onConfirm }: ActionR
         </div>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>Cancel</Button>
+        <Button
+          onClick={onClose}
+          type='secondary'
+        >
+          <span>Annuler</span>
+        </Button>
         <Button
           onClick={handleConfirm}
-          disabled={!selectedAction || !selectedReaction}
+          type='primary'
         >
-          Confirm
+          <span>Ajouter</span>
         </Button>
       </DialogActions>
     </Dialog>
