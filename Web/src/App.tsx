@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import AuthentificationSection from './App/AuthentificationSection/AuthentificationSection'
 import ErrorPage from './ErrorPage'
 import Homepage from './App/HomePage/Homepage'

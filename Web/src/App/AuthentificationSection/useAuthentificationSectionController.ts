@@ -3,7 +3,7 @@ import { checkIfUserExists, login, subscribe } from '../../Common/httpFunctions/
 import { UserCredential } from 'firebase/auth'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useContext, useEffect } from 'react'
-import { AccountContext, AccountType } from '../../Common/Contexts/AccountContext'
+import { AccountContext } from '../../Common/Contexts/AccountContext'
 import { addDataIntoCache, getDataFromCache } from '../../helpers/CacheManagement'
 
 type AuthForm = {

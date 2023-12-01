@@ -6,11 +6,10 @@ export function getDataFromCache(cacheName) {
             newData.password = atob(newData.password)
             return newData;
         } else {
-            console.log("no data in cache");
             return null;
         }
     } catch (error) {
-        console.log("error getting cache: " + error);
+        console.error("error getting cache: " + error);
     }
 }
 
@@ -18,6 +17,14 @@ export function addDataIntoCache(cacheName, response) {
     try {
         localStorage.setItem(cacheName, JSON.stringify(response))
     } catch (error) {
-        console.log("error adding cache: " + error);
+        console.error("error adding cache: " + error);
+    }
+}
+
+export function removeDataFromCache(cacheName) {
+    try {
+        localStorage.removeItem(cacheName)
+    } catch (error) {
+        console.error("error removing cache: " + error);
     }
 }
