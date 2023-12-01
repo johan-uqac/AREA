@@ -1,13 +1,11 @@
-import { getAuth, createUserWithEmailAndPassword, UserCredential, signInWithEmailAndPassword } from 'firebase/auth'
+import { post } from './requests'
 
-export function subscribe(email: string, password: string): Promise<UserCredential> {
-  const auth = getAuth()
-  return createUserWithEmailAndPassword(auth, email, password)
+export function subscribe(email: string, password: string): Promise<Response> {
+  return post('/user/sign-up', JSON.stringify({ email, password }))
 }
 
-export function login(email: string, password: string): Promise<UserCredential> {
-  const auth = getAuth()
-  return signInWithEmailAndPassword(auth, email, password)
+export function login(email: string, password: string): Promise<Response> {
+  return post('/user/sign-in', JSON.stringify({ email, password }))
 }
 
 export function checkIfUserExists(id: string): boolean {

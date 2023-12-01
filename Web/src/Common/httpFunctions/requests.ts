@@ -1,5 +1,5 @@
-const HOST = 'http://localhost'
-const PORT = '3001'
+const HOST = process.env.REACT_APP_ENVIRONMENT === 'DEV' ? 'http://localhost' : 'http://localhost' // TODO: Change to production url
+const PORT = process.env.REACT_APP_ENVIRONMENT === 'DEV' ? '8080' : '8080' // TODO: Change to production port
 
 export function get(endpoint: string, searchParams?: URLSearchParams) {
   return request(endpoint + '?', 'GET', searchParams)
@@ -15,6 +15,7 @@ function request(endpoint: string, method: Method, searchParams?: URLSearchParam
   console.log(HOST + ':' + PORT + endpoint + searchParams)
   return fetch(HOST + ':' + PORT + endpoint + searchParams, {
     method,
+    mode: 'cors',
     headers: {
       'Content-Type': 'application/json',
     },
