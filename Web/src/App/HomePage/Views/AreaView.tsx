@@ -2,12 +2,12 @@ import React from 'react'
 import { AREA } from '../../../Common/types/Area'
 import Area from '../../Components/Area'
 
-type AreasDisplayProps = {
+type AreasViewProps = {
   areas: AREA[]
   deleteArea: (id: string) => void
 }
 
-const AreasDisplay = ({ areas, deleteArea }: AreasDisplayProps) => (
+const AreasView = ({ areas, deleteArea }: AreasViewProps) => (
   <div className='w-full md:w-1/2'>
     <div className='w-full h-auto overflow-hidden rounded-md shadow-xl sm:rounded-xl'>
       <ul className='max-w-md divide-y divide-gray-200 dark:divide-gray-700'>
@@ -23,4 +23,4 @@ const AreasDisplay = ({ areas, deleteArea }: AreasDisplayProps) => (
   </div>
 )
 
-export default AreasDisplay
+export default AreasView
