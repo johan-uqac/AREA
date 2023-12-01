@@ -3,20 +3,17 @@ import CreatorCard from '../../Components/CreatorCard'
 
 const CREATORS = [
   {
-    imageLink:
-      'https://images.unsplash.com/photo-1619476006517-75d535a84652?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    imageLink: require('../../../assets/unicorn-sticker.png'),
     firstName: 'Gabrielle',
     lastName: 'Walgraef',
   },
   {
-    imageLink:
-      'https://images.unsplash.com/photo-1641761934425-af2fe6a2cc0d?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    imageLink: require('../../../assets/bear-sticker.png'),
     firstName: 'Mathieu',
     lastName: 'Muty',
   },
   {
-    imageLink:
-      'https://images.unsplash.com/photo-1535062311770-93adb0401917?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    imageLink: require('../../../assets/fox-sticker.png'),
     firstName: 'Johan',
     lastName: 'Chrillesen',
   },
