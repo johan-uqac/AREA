@@ -52,42 +52,37 @@ export default function useAuthentificationSectionController() {
   }
 
   function loginUser({ email, password }: LoginUser) {
-    login(email, password)
-      .then(res => {
+    login(email, password).then(res => {
+      res.json().then(json => {
         if (res.status == 406) {
-          res
-            .clone()
-            .json()
-            .then(json => {
-              console.log(json)
-              if (json.message == 'Wrong password') {
-                console.log(json.message)
-                setError('password', { message: 'Le mot de passe est invalide' })
-                return false
-              } else if (json.message == 'Please enter a valid email') {
-                setError('email', { message: 'Email invalide' })
-                return false
-              } else if (json.message == 'user not exist') {
-                setError('email', { message: "Aucun compte n'est relié à cet email" })
-              }
-            })
+          console.log(json)
+          if (json.message == 'Wrong password') {
+            console.log(json.message)
+            setError('password', { message: 'Le mot de passe est invalide' })
+            return false
+          } else if (json.message == 'Please enter a valid email') {
+            setError('email', { message: 'Email invalide' })
+            return false
+          } else if (json.message == 'user not exist') {
+            setError('email', { message: "Aucun compte n'est relié à cet email" })
+          } else {
+            setError('email', { message: 'Une erreur est survenue' })
+          }
+        } else {
+          setAccount({
+            ...account,
+            email: email,
+            uid: json._id,
+          })
+          addDataIntoCache('area', {
+            mail: json.email,
+            uid: json._id,
+            password: json.password,
+          })
+          navigate('/home')
         }
-        return res.json()
       })
-      .then(json => {
-        console.log(json)
-        setAccount({
-          ...account,
-          email: email,
-          uid: json._id,
-        })
-        addDataIntoCache('area', {
-          mail: json.email,
-          uid: json._id,
-          password: json.password,
-        })
-        navigate('/home')
-      })
+    })
   }
 
   function subscribeUser(data: SubscribeUser) {
