@@ -1,5 +1,5 @@
-const HOST = process.env.REACT_APP_ENVIRONMENT === 'DEV' ? 'http://localhost' : 'http://localhost' // TODO: Change to production url
-const PORT = process.env.REACT_APP_ENVIRONMENT === 'DEV' ? '8080' : '8080' // TODO: Change to production port
+const HOST = process.env.REACT_APP_ENVIRONMENT === 'DEV' ? 'http://localhost' : 'https://area-uqac-back.onrender.com' // TODO: Change to production url
+const PORT = process.env.REACT_APP_ENVIRONMENT === 'DEV' ? '8080' : undefined // TODO: Change to production port
 
 export function get(endpoint: string, searchParams?: URLSearchParams) {
   return request(endpoint + '?', 'GET', searchParams)
@@ -12,7 +12,7 @@ export function post(endpoint: string, body: string) {
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
 function request(endpoint: string, method: Method, searchParams?: URLSearchParams, body?: string): Promise<Response> {
-  console.log(HOST + ':' + PORT + endpoint + searchParams)
+  console.log(HOST + (PORT ? ':' + PORT : null) + endpoint + searchParams)
   return fetch(HOST + ':' + PORT + endpoint + searchParams, {
     method,
     mode: 'cors',
