@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from '../../Components/Button'
 
 export default function Discover() {
   return (
@@ -16,12 +17,14 @@ export default function Discover() {
                 travail fluides et efficaces.
               </p>
               <div className='relative flex flex-col sm:flex-row sm:space-x-4'>
-                <a
-                  href='https://fr.wikipedia.org/wiki/Zapier'
-                  className='flex items-center px-6 py-3 text-gray-0 bg-teal-600 rounded-md hover:bg-gray-200 hover:text-gray-600'
+                <Button
+                  onClick={() => {
+                    window.location.href = 'https://fr.wikipedia.org/wiki/Zapier'
+                  }}
+                  color='teal-600'
                 >
-                  En savoir plus
-                </a>
+                  <span>En savoir plus</span>
+                </Button>
               </div>
             </div>
           </div>

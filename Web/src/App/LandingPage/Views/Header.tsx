@@ -1,19 +1,23 @@
 import React from 'react'
+import Button from '../../Components/Button'
 
 const ConnectButtons = () => (
   <div className='inline-flex items-center ml-5 space-x-6 lg:justify-end'>
-    <a
-      href='./auth/login'
-      className='inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-slate-900 border border-transparent rounded-md shadow-sm hover:bg-slate-900 hover:outline-none hover:ring-2 hover:ring-offset-2 hover:ring-slate-900'
+    <Button
+      onClick={() => {
+        window.location.href = './auth/login'
+      }}
     >
-      Connectes-toi
-    </a>
-    <a
-      href='./auth/subscribe'
-      className='inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-teal-600 border border-transparent rounded-md shadow-sm hover:bg-teal-600 hover:outline-none hover:ring-2 hover:ring-offset-2 hover:ring-teal-600'
+      <span>Connectes-toi</span>
+    </Button>
+    <Button
+      onClick={() => {
+        window.location.href = './auth/subscribe'
+      }}
+      color='teal-600'
     >
-      Inscris-toi
-    </a>
+      <span>Inscris-toi</span>
+    </Button>
   </div>
 )
 

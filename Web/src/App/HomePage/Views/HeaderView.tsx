@@ -1,5 +1,5 @@
-import { Button } from '@mui/material'
 import React from 'react'
+import Button from '../../Components/Button'
 
 type HeaderViewProps = {
   logOut: () => void
@@ -19,11 +19,8 @@ const HeaderView = ({ logOut }: HeaderViewProps) => (
         </a>
       </div>
       <div className='inline-flex items-center ml-5 space-x-6 lg:justify-end'>
-        <Button
-          onClick={logOut}
-          className='inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-slate-900 border border-transparent rounded-md shadow-sm hover:bg-slate-900 hover:outline-none hover:ring-2 hover:ring-offset-2 hover:ring-slate-900'
-        >
-          Se déconnecter
+        <Button onClick={logOut}>
+          <span>Se déconnecter</span>
         </Button>
       </div>
     </div>
