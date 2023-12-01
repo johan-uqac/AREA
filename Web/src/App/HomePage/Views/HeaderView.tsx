@@ -23,7 +23,7 @@ const HeaderView = ({ logOut }: HeaderViewProps) => (
           onClick={logOut}
           className='inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-slate-900 border border-transparent rounded-md shadow-sm hover:bg-slate-900 hover:outline-none hover:ring-2 hover:ring-offset-2 hover:ring-slate-900'
         >
-          Log out
+          Se déconnecter
         </Button>
       </div>
     </div>

@@ -28,11 +28,11 @@ export default function AboutUs() {
       <div className='container px-5 py-24 mx-auto'>
         <div className='flex flex-col text-center w-full mb-20'>
           <h2 className='mb-4 text-3xl font-bold leading-tight tracking-tight sm:text-4xl font-heading text-teal-600'>
-            Meet our Team !
+            Découvre l&apos;équipe !
           </h2>
           <p className='mb-4 font-medium tracking-tight text-gray-400 xl:mb-6'>
-            Meet the dynamic trio from the world of IT. Hailing from diverse backgrounds but united by a shared passion
-            for technology
+            Découvres le trio le plus dynamique du monde de l&apos;informatique. Tous originaires de milieux différents
+            mais unis par une passion commune pour la technologie.
           </p>
         </div>
         <div className='flex flex-wrap -m-2'>

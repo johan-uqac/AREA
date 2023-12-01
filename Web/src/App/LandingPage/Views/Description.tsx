@@ -3,7 +3,7 @@ import HowListItem from '../../Components/HowListItem'
 
 const LIST_ITEMS = [
   {
-    text: 'Quick Signup',
+    text: 'Une inscription rapide et facile',
     svg: (
       <svg
         xmlns='http://www.w3.org/2000/svg'
@@ -16,7 +16,7 @@ const LIST_ITEMS = [
     ),
   },
   {
-    text: 'Select Your Applications',
+    text: 'Choisis tes applications',
     svg: (
       <svg
         xmlns='http://www.w3.org/2000/svg'
@@ -29,7 +29,7 @@ const LIST_ITEMS = [
     ),
   },
   {
-    text: 'Build Your Automations',
+    text: 'Construits tes automatisations',
     svg: (
       <svg
         xmlns='http://www.w3.org/2000/svg'
@@ -42,7 +42,7 @@ const LIST_ITEMS = [
     ),
   },
   {
-    text: 'Launch and Optimize',
+    text: 'Lances et optimises',
     svg: (
       <svg
         xmlns='http://www.w3.org/2000/svg'
@@ -64,10 +64,11 @@ export default function Description() {
           <div className='order-1 w-full px-3 lg:w-1/2 lg:order-0'>
             <div className='w-full lg:max-w-md'>
               <h2 className='mb-4 text-3xl font-bold leading-tight tracking-tight sm:text-4xl font-heading'>
-                How does it works ?
+                Comment ça marche ?
               </h2>
               <p className='mb-4 font-medium tracking-tight text-gray-400 xl:mb-6'>
-                It s never been easier to free your team from time-consuming tasks to focus on innovation and growth. :
+                Ça n&apos;a jamais été aussi facile de libérer ton équipe des tâches chronophages pour se concentrer sur
+                l&apos;innovation et la croissance :{' '}
               </p>
               <ul>
                 {LIST_ITEMS.map(item => (

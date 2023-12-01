@@ -14,7 +14,7 @@ const Homepage = () => {
       <HeaderView logOut={logOut} />
 
       <h1 className='flex justify-center text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-4xl lg:text-5xl xl:text-6xl bg-white'>
-        <span className='block :inline '>Let&apos;s go !</span>
+        <span className='block :inline '>C&apos;est parti !</span>
       </h1>
 
       <section className='px-2 py-32 bg-white md:px-0'>

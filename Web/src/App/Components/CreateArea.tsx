@@ -49,7 +49,7 @@ const ActionReactionModal = ({ actions, reactions, onClose, onConfirm }: ActionR
       open
       onClose={onClose}
     >
-      <DialogTitle>Select Action and Reaction</DialogTitle>
+      <DialogTitle>Choisis une action et une réaction</DialogTitle>
       <DialogContent>
         <DisplaySelector
           selected={selectedAction}
