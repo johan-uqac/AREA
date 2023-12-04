@@ -3,17 +3,17 @@ import CreatorCard from '../../Components/CreatorCard'
 
 const CREATORS = [
   {
-    imageLink: require('../../../assets/unicorn-sticker.png'),
+    imageLink: require('../../../assets/gab.png'),
     firstName: 'Gabrielle',
     lastName: 'Walgraef',
   },
   {
-    imageLink: require('../../../assets/bear-sticker.png'),
+    imageLink: require('../../../assets/matt.png'),
     firstName: 'Mathieu',
     lastName: 'Muty',
   },
   {
-    imageLink: require('../../../assets/fox-sticker.png'),
+    imageLink: require('../../../assets/johan.png'),
     firstName: 'Johan',
     lastName: 'Chrillesen',
   },
