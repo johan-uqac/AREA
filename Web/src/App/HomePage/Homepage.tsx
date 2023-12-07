@@ -7,7 +7,7 @@ import AccountView from './Views/AccountView'
 import HeaderView from './Views/HeaderView'
 
 const Homepage = () => {
-  const { account, areas, showModal, toggleModal, deleteArea, addArea, logOut } = useHomepageController()
+  const { account, showModal, toggleModal, deleteArea, addArea, logOut } = useHomepageController()
 
   return (
     <div>
@@ -25,7 +25,7 @@ const Homepage = () => {
               toggleModal={toggleModal}
             />
             <AreasView
-              areas={areas}
+              areas={account.areas}
               deleteArea={deleteArea}
             />
           </div>

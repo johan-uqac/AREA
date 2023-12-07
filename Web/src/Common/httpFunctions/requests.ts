@@ -13,6 +13,10 @@ export function put(endpoint: string, body: string) {
   return request(endpoint, 'PUT', body)
 }
 
+export function del(endpoint: string, body: string) {
+  return request(endpoint, 'DELETE', body)
+}
+
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
 function request(endpoint: string, method: Method, body?: string, searchParams?: URLSearchParams): Promise<Response> {

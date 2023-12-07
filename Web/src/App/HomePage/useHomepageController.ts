@@ -6,18 +6,28 @@ import { v4 as uuidv4 } from 'uuid'
 import { AREA } from '../../Common/types/Area'
 import { ACTIONS, REACTIONS } from '../../Common/areas'
 import { removeDataFromCache } from '../../helpers/CacheManagement'
-import { sendNewArea } from '../../Common/httpFunctions/create-areas'
+import { deleteAreaFromServer, getAreas, sendNewArea } from '../../Common/httpFunctions/create-areas'
 
 export default function useHomepageController() {
   const { account, setAccount } = useContext(AccountContext)
   const navigate = useNavigate()
-  const [areas, setAreas] = useState(USER_AREAS)
   const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
     if (account.email === '') {
       navigate('/')
     }
+    getAreas(account.uid).then(res => {
+      res.json().then(json => {
+        if (res.status == 200) {
+          console.log(json)
+          setAccount({
+            ...account,
+            areas: json,
+          })
+        }
+      })
+    })
   }, [account.email, navigate])
 
   const toggleModal = () => {
@@ -25,8 +35,12 @@ export default function useHomepageController() {
   }
 
   const deleteArea = (id: string) => {
-    const newAreas = areas.filter(area => area.id !== id)
-    setAreas(newAreas)
+    const newAreas = account.areas.filter(area => area.id !== id)
+    setAccount({
+      ...account,
+      areas: newAreas,
+    })
+    // TODO: deleteAreaFromServer(account.uid, id)
   }
 
   const addArea = (actionId: string, reactionId: string) => {
@@ -35,8 +49,11 @@ export default function useHomepageController() {
       action: ACTIONS.find(action => action.id === actionId),
       reaction: REACTIONS.find(reaction => reaction.id === reactionId),
     } as AREA
-    setAreas([...areas, newArea])
-    sendNewArea(actionId, account.uid);
+    setAccount({
+      ...account,
+      areas: [...account.areas, newArea],
+    })
+    sendNewArea(actionId, account.uid)
   }
 
   const logOut = () => {
@@ -52,7 +69,6 @@ export default function useHomepageController() {
 
   return {
     account,
-    areas,
     showModal,
     toggleModal,
     deleteArea,

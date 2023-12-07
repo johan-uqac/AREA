@@ -331,6 +331,12 @@ export class UserService {
 
   async getArea(userId: string) {
     const areas = [];
+    const finalReaction = {
+      id: '0',
+      name: 'Envoie e-mail',
+      description: 'Envoie un e-mail',
+      platform: 'gmail',
+    };
     await this.model.findOne({ _id: userId }).then((res) => {
       res.areas.forEach((area: any) => {
         if (area.action.name !== 'empty') {
@@ -343,22 +349,39 @@ export class UserService {
       if (area.action.name === 'neige') {
         area.action.id = '1';
         area.action.name = 'Quand il neige';
+        area.action.description = 'Quand il neige à Saguenay';
+        area.action.platform = 'meteo';
+        area.reaction = finalReaction;
       }
       if (area.action.name === 'pluie') {
         area.action.id = '2';
         area.action.name = 'Quand il pleut';
+        area.action.description = 'Quand il pleut à Saguenay';
+        area.action.platform = 'meteo';
+        area.reaction = finalReaction;
       }
       if (area.action.name === 'mail') {
         area.action.id = '3';
         area.action.name = 'Quand je reçois un email';
+        area.action.description = 'Quand je reçois un email';
+        area.action.platform = 'gmail';
+        area.reaction = finalReaction;
       }
       if (area.action.name === 'iss') {
         area.action.id = '4';
         area.action.name = "Quand l'ISS passe à moins de 100km de Saguenay";
+        area.action.description =
+          "Quand l'ISS passe à moins de 100km de Saguenay";
+        area.action.platform = 'iss';
+        area.reaction = finalReaction;
       }
       if (area.action.name === 'iss2') {
-        area.action.id = '5';
+        area.action.id = '54';
         area.action.name = "Quand l'ISS passe à moins de 20000km de Saguenay";
+        area.action.description =
+          "Quand l'ISS passe à moins de 20000km de Saguenay";
+        area.action.platform = 'iss';
+        area.reaction = finalReaction;
       }
       console.log(area);
     });
