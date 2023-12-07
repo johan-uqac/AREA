@@ -7,6 +7,7 @@ import {
   Post,
   Put,
   NotAcceptableException,
+  Delete,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -45,7 +46,8 @@ export class UserController {
 
   @Get('areas:id')
   async findAllAreas(@Param('id') id: string) {
-    return await this.service.getArea(id);
+    console.log('id : ', id);
+    return await this.service.getArea(id.split(':')[1]);
   }
 
   @Get(':id')
@@ -150,7 +152,7 @@ export class UserController {
     this.service.logout(id);
   }
 
-  @Post('/deleteArea')
+  @Delete('/deleteArea')
   async removeArea(@Body() deleteArea: DeleteArea) {
     console.log(deleteArea);
     return this.service.deleteArea(deleteArea);

@@ -310,7 +310,9 @@ export class UserService {
           { _id: deleteArea.userId },
           {
             $set: {
-              [queryString]: {},
+              [queryString]: {
+                action: { name: 'empty' },
+              },
             },
           },
         )
@@ -330,8 +332,10 @@ export class UserService {
   async getArea(userId: string) {
     const areas = [];
     await this.model.findOne({ _id: userId }).then((res) => {
-      res.areas.forEach((area) => {
-        areas.push(area);
+      res.areas.forEach((area: any) => {
+        if (area.action.name !== 'empty') {
+          areas.push(area);
+        }
       });
     });
     console.log(areas);
