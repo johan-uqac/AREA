@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Type } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User, UserDocument } from './schemas/user.schema';
@@ -188,8 +188,17 @@ export class UserService {
     return returnValue;
   }
 
-  async createArea(areaDto: AreaDto): Promise<boolean> {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async createArea(areaData: AreaDto): Promise<boolean> {
+    const areaDto: any = areaData;
     let returnValue = true;
+    if (areaDto.action.name === '1') {
+      areaDto.action.name = 'neige';
+    } else if (areaDto.action.name === '2') {
+      areaDto.action.name = 'pluie';
+    } else if (areaDto.action.name === '3') {
+      areaDto.action.name = 'iss';
+    }
     this.model
       .updateOne(
         { _id: areaDto.userId },
@@ -318,13 +327,22 @@ export class UserService {
   }
 
   async getAllMail() {
-    return ['toto'];
+    const emailList: string[] = [];
+    (await this.model.find()).forEach((document) => {
+      emailList.push(document.email);
+    });
+    return emailList;
+  }
+
+  async getUserEmailByArea(areaType: string) {
+    const emailList: string[] = [];
+    (await this.model.find()).forEach((document) => {
+      document.areas.forEach((area: any) => {
+        if (area.action.name === areaType) {
+          emailList.push(document.email);
+        }
+      });
+    });
+    return emailList;
   }
 }
-
-// methode à faire
-// find access token by service
-// check is logged
-// find area
-// logout
-// add area

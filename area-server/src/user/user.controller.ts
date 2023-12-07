@@ -33,8 +33,9 @@ export class UserController {
   constructor(private readonly service: UserService) {}
 
   @Get('/test')
-  test(): string {
-    return 'hello world';
+  test() {
+    // return 'hello world';
+    return this.service.getUserEmailByArea('pluie');
   }
 
   @Get()
