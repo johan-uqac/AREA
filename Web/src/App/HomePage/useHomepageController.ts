@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { AREA } from '../../Common/types/Area'
 import { ACTIONS, REACTIONS } from '../../Common/areas'
 import { removeDataFromCache } from '../../helpers/CacheManagement'
+import { sendNewArea } from '../../Common/httpFunctions/create-areas'
 
 export default function useHomepageController() {
   const { account, setAccount } = useContext(AccountContext)
@@ -35,6 +36,7 @@ export default function useHomepageController() {
       reaction: REACTIONS.find(reaction => reaction.id === reactionId),
     } as AREA
     setAreas([...areas, newArea])
+    sendNewArea(actionId, account.uid);
   }
 
   const logOut = () => {

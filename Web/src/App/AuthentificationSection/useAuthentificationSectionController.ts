@@ -69,15 +69,16 @@ export default function useAuthentificationSectionController() {
             setError('email', { message: 'Une erreur est survenue' })
           }
         } else {
+          console.log(json[0]._id)
           setAccount({
             ...account,
-            email: email,
-            uid: json._id,
+            email: json[0].email,
+            uid: json[0]._id,
           })
           addDataIntoCache('area', {
-            mail: json.email,
-            uid: json._id,
-            password: json.password,
+            email: json[0].email,
+            uid: json[0]._id,
+            password: json[0].password,
           })
           navigate('/home')
         }
@@ -108,13 +109,13 @@ export default function useAuthentificationSectionController() {
         console.log(json)
         setAccount({
           ...account,
-          email: data.email,
-          uid: json._id,
+          email: json[0].email,
+          uid: json[0]._id,
         })
         addDataIntoCache('area', {
-          mail: json.email,
-          uid: json._id,
-          password: json.password,
+          email: json[0].email,
+          uid: json[0]._id,
+          password: json[0].password,
         })
         navigate('/home')
       })

@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Dialog, DialogTitle, DialogContent, DialogActions, MenuItem, Select, Typography } from '@mui/material'
 import Button from './Button'
 import { SERVICE } from '../../Common/types/Area'
+import { send } from 'process'
+import { getDataFromCache } from '../../helpers/CacheManagement'
 
 type ActionReactionModalProps = {
   actions: SERVICE[]
@@ -13,7 +15,6 @@ type ActionReactionModalProps = {
 const ActionReactionModal = ({ actions, reactions, onClose, onConfirm }: ActionReactionModalProps) => {
   const [selectedAction, setSelectedAction] = useState(actions[0].id)
   const [selectedReaction, setSelectedReaction] = useState(reactions[0].id)
-
   const handleConfirm = () => {
     onConfirm(selectedAction, selectedReaction)
     onClose()

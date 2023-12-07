@@ -9,6 +9,10 @@ export function post(endpoint: string, body: string) {
   return request(endpoint, 'POST', body)
 }
 
+export function put(endpoint: string, body: string) {
+  return request(endpoint, 'PUT', body)
+}
+
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
 function request(endpoint: string, method: Method, body?: string, searchParams?: URLSearchParams): Promise<Response> {
