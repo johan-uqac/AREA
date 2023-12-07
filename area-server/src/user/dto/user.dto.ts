@@ -38,5 +38,5 @@ export class DeleteArea {
   readonly userId: string;
   // readonly actionService: string
   // readonly reactionService: string
-  readonly areaId: number;
+  readonly areaId: string;
 }

@@ -302,7 +302,7 @@ export class UserService {
 
   async deleteArea(deleteArea: DeleteArea): Promise<boolean> {
     let retValue = true;
-    const queryString: string = 'areas.' + deleteArea.areaId.toString();
+    const queryString: string = 'areas.' + deleteArea.areaId;
 
     try {
       this.model
