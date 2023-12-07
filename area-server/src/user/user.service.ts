@@ -1,4 +1,4 @@
-import { Injectable, Type } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User, UserDocument } from './schemas/user.schema';
@@ -196,6 +196,8 @@ export class UserService {
       areaDto.action.name = 'neige';
     } else if (areaDto.action.name === '2') {
       areaDto.action.name = 'pluie';
+    } else if (areaDto.action.name === '3') {
+      areaDto.action.name = 'mail';
     } else if (areaDto.action.name === '4' || areaDto.action.name === '5') {
       areaDto.action.name = 'iss';
     }
@@ -323,7 +325,33 @@ export class UserService {
   }
 
   async getArea(userId: string) {
-    return this.model.findOne({ _id: userId });
+    const areas = [];
+    await this.model.findOne({ _id: userId }).then((res) => {
+      res.areas.forEach((area) => {
+        areas.push(area);
+      });
+    });
+    console.log(areas);
+    areas.forEach((area) => {
+      if (area.action.name === 'neige') {
+        area.action.id = '1';
+        area.action.name = 'Quand il neige';
+      }
+      if (area.action.name === 'pluie') {
+        area.action.id = '2';
+        area.action.name = 'Quand il pleut';
+      }
+      if (area.action.name === 'mail') {
+        area.action.id = '3';
+        area.action.name = 'Quand je reçois un email';
+      }
+      if (area.action.name === 'iss') {
+        area.action.id = '4';
+        area.action.name = "Quand l'ISS passe à moins de 100km de Saguenay";
+      }
+      console.log(area);
+    });
+    return areas;
   }
 
   async getAllMail() {

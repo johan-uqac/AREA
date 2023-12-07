@@ -43,6 +43,11 @@ export class UserController {
     return await this.service.findAll();
   }
 
+  @Get('areas:id')
+  async findAllAreas(@Param('id') id: string) {
+    return await this.service.getArea(id);
+  }
+
   @Get(':id')
   async findbyId(@Param('id') id: string) {
     return await this.service.findOne(id);
