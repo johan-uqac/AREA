@@ -20,6 +20,7 @@ export class ServiceDataDto {
 
 export class AreaDto {
   readonly userId: string;
+  readonly areaId: string;
   readonly action: Array<object>;
   readonly reaction: Array<object>;
 }

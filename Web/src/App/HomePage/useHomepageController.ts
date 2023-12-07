@@ -35,12 +35,16 @@ export default function useHomepageController() {
   }
 
   const deleteArea = (id: string) => {
-    const newAreas = account.areas.filter(area => area.id !== id)
+    console.log(id)
+    const deletedAreas = account.areas.splice(Number(id), 1)
+    console.log('removed area = ', deleteArea)
+    const newAreas = account.areas
+    console.log('new areas = ', newAreas)
     setAccount({
       ...account,
       areas: newAreas,
     })
-    // TODO: deleteAreaFromServer(account.uid, id)
+    deleteAreaFromServer(account.uid, id)
   }
 
   const addArea = (actionId: string, reactionId: string) => {
@@ -53,7 +57,8 @@ export default function useHomepageController() {
       ...account,
       areas: [...account.areas, newArea],
     })
-    sendNewArea(actionId, account.uid)
+    console.log(newArea.id)
+    sendNewArea(actionId, newArea.id, account.uid)
   }
 
   const logOut = () => {

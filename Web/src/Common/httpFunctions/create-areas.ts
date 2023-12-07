@@ -1,10 +1,11 @@
 import { del, get, put } from './requests'
 
-export function sendNewArea(actionId: string, userId: string): Promise<Response> {
+export function sendNewArea(actionId: string, areaId: string, userId: string): Promise<Response> {
   return put(
     '/user/create-area',
     JSON.stringify({
       userId: userId,
+      areaId: areaId,
       action: {
         name: actionId,
       },

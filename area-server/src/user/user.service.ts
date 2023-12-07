@@ -210,6 +210,7 @@ export class UserService {
         {
           $push: {
             areas: {
+              areaId: areaDto.areaId,
               action: areaDto.action,
               reaction: areaDto.reaction,
             },
@@ -309,9 +310,14 @@ export class UserService {
         .updateOne(
           { _id: deleteArea.userId },
           {
-            $set: {
-              [queryString]: {
-                action: { name: 'empty' },
+            // $set: {
+            //   [queryString]: {
+            //     action: { name: 'empty' },
+            //   },
+            // },
+            $pull: {
+              areas: {
+                areaId: deleteArea.areaId,
               },
             },
           },
