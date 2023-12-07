@@ -17,17 +17,19 @@ export default function useHomepageController() {
     if (account.email === '') {
       navigate('/')
     }
-    getAreas(account.uid).then(res => {
-      res.json().then(json => {
-        if (res.status == 200) {
-          console.log(json)
-          setAccount({
-            ...account,
-            areas: json,
-          })
-        }
+    if (account.uid) {
+      getAreas(account.uid).then(res => {
+        res.json().then(json => {
+          if (res.status == 200) {
+            console.log(json)
+            setAccount({
+              ...account,
+              areas: json,
+            })
+          }
+        })
       })
-    })
+    }
   }, [account.email, navigate])
 
   const toggleModal = () => {
@@ -35,9 +37,10 @@ export default function useHomepageController() {
   }
 
   const deleteArea = (id: string) => {
-    console.log(id)
-    const deletedAreas = account.areas.splice(Number(id), 1)
-    console.log('removed area = ', deleteArea)
+    account.areas.splice(
+      account.areas.findIndex(area => area.id === id),
+      1
+    )
     const newAreas = account.areas
     console.log('new areas = ', newAreas)
     setAccount({

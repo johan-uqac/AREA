@@ -12,7 +12,6 @@ type Logo = {
 }
 
 const Area = ({ area, deleteArea }: Props) => {
-  console.log(area)
   const logo: Logo = {
     gmail: require('../../assets/google.png'),
     meteo: require('../../assets/meteo.png'),
