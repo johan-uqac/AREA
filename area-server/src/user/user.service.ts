@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 import { User, UserDocument } from './schemas/user.schema';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { IssModule } from '../iss/iss.module';
 import {
   AreaDto,
   DeleteArea,
@@ -198,8 +199,10 @@ export class UserService {
       areaDto.action.name = 'pluie';
     } else if (areaDto.action.name === '3') {
       areaDto.action.name = 'mail';
-    } else if (areaDto.action.name === '4' || areaDto.action.name === '5') {
+    } else if (areaDto.action.name === '4') {
       areaDto.action.name = 'iss';
+    } else if (areaDto.action.name === '5') {
+      areaDto.action.name = 'iss2';
     }
     this.model
       .updateOne(
@@ -348,6 +351,10 @@ export class UserService {
       if (area.action.name === 'iss') {
         area.action.id = '4';
         area.action.name = "Quand l'ISS passe à moins de 100km de Saguenay";
+      }
+      if (area.action.name === 'iss2') {
+        area.action.id = '5';
+        area.action.name = "Quand l'ISS passe à moins de 20000km de Saguenay";
       }
       console.log(area);
     });
