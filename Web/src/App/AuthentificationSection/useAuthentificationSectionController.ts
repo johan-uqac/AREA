@@ -95,13 +95,16 @@ export default function useAuthentificationSectionController() {
       .then(res => {
         if (res.status == 406) {
           console.log(res)
-          res.json().then(json => {
-            if (json.message == 'user already exist') {
-              setError('email', { message: 'Email déjà utilisé' })
-            } else if (json.message == 'invalid email') {
-              setError('email', { message: 'Email invalide' })
-            }
-          })
+          res
+            .clone()
+            .json()
+            .then(json => {
+              if (json.message == 'user already exist') {
+                setError('email', { message: 'Email déjà utilisé' })
+              } else if (json.message == 'invalid email') {
+                setError('email', { message: 'Email invalide' })
+              }
+            })
         }
         return res.json()
       })
@@ -109,13 +112,13 @@ export default function useAuthentificationSectionController() {
         console.log(json)
         setAccount({
           ...account,
-          email: json[0].email,
-          uid: json[0]._id,
+          email: json.email,
+          uid: json._id,
         })
         addDataIntoCache('area', {
-          email: json[0].email,
-          uid: json[0]._id,
-          password: json[0].password,
+          email: json.email,
+          uid: json._id,
+          password: json.password,
         })
         navigate('/home')
       })

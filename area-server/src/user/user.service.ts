@@ -196,7 +196,7 @@ export class UserService {
       areaDto.action.name = 'neige';
     } else if (areaDto.action.name === '2') {
       areaDto.action.name = 'pluie';
-    } else if (areaDto.action.name === '3') {
+    } else if (areaDto.action.name === '4' || areaDto.action.name === '5') {
       areaDto.action.name = 'iss';
     }
     this.model
