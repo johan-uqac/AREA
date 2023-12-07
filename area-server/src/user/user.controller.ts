@@ -8,6 +8,7 @@ import {
   Put,
   NotAcceptableException,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -44,10 +45,10 @@ export class UserController {
     return await this.service.findAll();
   }
 
-  @Get('areas:id')
-  async findAllAreas(@Param('id') id: string) {
-    console.log('id : ', id);
-    return await this.service.getArea(id.split(':')[1]);
+  @Get('areas')
+  async findAllAreas(@Query() id: any) {
+    // console.log('id : ', id.userId);
+    return await this.service.getArea(id.userId);
   }
 
   @Get(':id')
